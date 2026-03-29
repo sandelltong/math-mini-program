@@ -1,0 +1,92 @@
+/* pages/index/index.wxss */
+.welcome-card {
+  display: flex;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.avatar {
+  font-size: 100rpx;
+  margin-right: 30rpx;
+}
+
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin: 30rpx 0 20rpx;
+  padding-left: 10rpx;
+}
+
+.grid-menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.menu-item {
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(255, 182, 193, 0.2);
+  transition: transform 0.2s;
+}
+
+.menu-item:active {
+  transform: scale(0.95);
+}
+
+.menu-icon {
+  font-size: 60rpx;
+  margin-bottom: 15rpx;
+}
+
+.menu-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.menu-desc {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.4;
+}
+
+.daily-quote {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 30rpx;
+}
+
+.quote-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  font-style: italic;
+}

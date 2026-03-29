@@ -1,0 +1,90 @@
+<!--pages/chat/chat.wxml - 聊天页面-->
+<view class="chat-container">
+  <!-- 顶部操作栏 -->
+  <view class="header-bar">
+    <text class="header-title">数学小助手 📚</text>
+    <view class="header-actions">
+      <view class="action-btn" bindtap="clearHistory">
+        <text class="icon">🗑️</text>
+        <text class="text">清空</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view 
+    class="message-list" 
+    scroll-y 
+    scroll-into-view="{{scrollToView}}"
+    scroll-with-animation
+  >
+    <view wx:for="{{messages}}" wx:key="id" class="message-item {{item.type}}">
+      <!-- 系统消息 -->
+      <view wx:if="{{item.type === 'system'}}" class="system-message">
+        <text>{{item.content}}</text>
+      </view>
+      
+      <!-- 普通消息 -->
+      <view wx:else class="message-wrapper">
+        <view class="message-avatar">{{item.type === 'user' ? '🧑‍🎓' : '📚'}}</view>
+        <view class="message-bubble {{item.type}}">
+          <text class="message-content">{{item.content}}</text>
+          <view class="message-footer">
+            <text class="message-time">{{item.time}}</text>
+            <text wx:if="{{item.type === 'assistant'}}" class="copy-btn" bindtap="copyAnswer" data-content="{{item.content}}">📋</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 思考中状态 -->
+    <view wx:if="{{isThinking}}" class="message-item assistant">
+      <view class="message-avatar">📚</view>
+      <view class="message-bubble assistant thinking">
+        <view class="thinking-animation">
+          <text>老师正在思考中</text>
+          <text class="dots">...</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <!-- 快捷问题 -->
+    <scroll-view class="quick-questions" scroll-x>
+      <view 
+        wx:for="{{quickQuestions}}" 
+        wx:key="*this"
+        class="quick-tag"
+        bindtap="sendQuickQuestion"
+        data-question="{{item}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+    
+    <!-- 输入框 -->
+    <view class="input-box">
+      <view 
+        class="voice-btn {{isRecording ? 'recording' : ''}}" 
+        bindtouchstart="startRecording" 
+        bindtouchend="stopRecording"
+      >
+        <text class="icon">{{isRecording ? '⏹️' : '🎤'}}</text>
+      </view>
+      <input 
+        class="text-input"
+        value="{{inputValue}}"
+        placeholder="{{isRecording ? '松开 结束录音' : '输入或语音提问吧~'}}"
+        placeholder-class="placeholder-style"
+        bindinput="onInput"
+        confirm-type="send"
+        bindconfirm="sendMessage"
+      />
+      <view class="send-btn {{inputValue.trim() ? 'active' : ''}}" bindtap="sendMessage">
+        <text>发送</text>
+      </view>
+    </view>
+  </view>
+</view>

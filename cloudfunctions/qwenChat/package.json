@@ -1,0 +1,22 @@
+{
+  "name": "qwenChat",
+  "version": "1.0.0",
+  "description": "通义千问 AI 对话云函数 - 高中数学辅导",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "qwen",
+    "ai",
+    "math",
+    "education",
+    "wechat",
+    "miniprogram"
+  ],
+  "author": "sandell",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

@@ -1,0 +1,126 @@
+/* pages/practice/practice.wxss */
+.container {
+  padding: 30rpx;
+  background: #FFF5F7;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 182, 193, 0.15);
+}
+
+.header-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: linear-gradient(135deg, #FFB6C1 0%, #FF9AAF 100%);
+  color: white;
+}
+
+.header-icon {
+  font-size: 60rpx;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.header-subtitle {
+  font-size: 24rpx;
+  opacity: 0.9;
+  margin-top: 4rpx;
+}
+
+/* 筛选器 */
+.grade-selector {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.grade-tag {
+  padding: 12rpx 30rpx;
+  background: white;
+  color: #FF6B8A;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  border: 2rpx solid #FFB6C1;
+}
+
+.grade-tag.active {
+  background: #FFB6C1;
+  color: white;
+}
+
+/* 列表项 */
+.practice-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-main {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.topic-icon {
+  font-size: 44rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: #FFF0F3;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topic-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+  margin-top: 8rpx;
+}
+
+.grade-tag-mini {
+  font-size: 20rpx;
+  color: #FF6B8A;
+  background: #FFF0F3;
+  padding: 2rpx 10rpx;
+  border-radius: 6rpx;
+}
+
+.count-text {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.start-btn {
+  background: #FF6B8A;
+  color: white;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}

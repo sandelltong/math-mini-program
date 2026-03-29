@@ -1,0 +1,48 @@
+<!--pages/practice/practice.wxml - 练习题页面-->
+<view class="container">
+  <view class="header-card card">
+    <view class="header-icon">✏️</view>
+    <view class="header-text">
+      <text class="header-title">随堂练习</text>
+      <text class="header-subtitle">选择一个知识点，开始练习吧！</text>
+    </view>
+  </view>
+
+  <!-- 筛选器 -->
+  <view class="filter-section">
+    <view class="grade-selector">
+      <view 
+        wx:for="{{grades}}" 
+        wx:key="*this"
+        class="grade-tag {{currentGrade === item ? 'active' : ''}}"
+        bindtap="selectGrade"
+        data-grade="{{item}}"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 练习列表 -->
+  <view class="practice-list">
+    <view 
+      wx:for="{{filteredTopics}}" 
+      wx:key="id"
+      class="practice-item card"
+      bindtap="startPractice"
+      data-topic="{{item}}"
+    >
+      <view class="item-main">
+        <view class="topic-icon">{{topicIcons[index % topicIcons.length]}}</view>
+        <view class="topic-info">
+          <text class="topic-name">{{item.name}}</text>
+          <view class="stats">
+            <text class="grade-tag-mini">{{item.grade}}</text>
+            <text class="count-text">已有 10+ 题目</text>
+          </view>
+        </view>
+      </view>
+      <view class="start-btn">开始练习</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+# 云函数敏感文件
+config.js
+
+# 依赖目录
+node_modules/
+
+# 日志
+*.log
+
+# 临时文件
+*.tmp

@@ -1,0 +1,46 @@
+<!--pages/index/index.wxml - 首页-->
+<view class="container">
+  <!-- 欢迎区域 -->
+  <view class="welcome-card card">
+    <view class="avatar">📚</view>
+    <view class="welcome-text">
+      <text class="title">你好呀，小朋友~</text>
+      <text class="subtitle">我是你的数学小助手</text>
+    </view>
+  </view>
+
+  <!-- 快捷功能 -->
+  <view class="section-title">✨ 今天想学什么呢？</view>
+  
+  <view class="grid-menu">
+    <view class="menu-item" bindtap="goToChat" data-type="chat">
+      <view class="menu-icon">💬</view>
+      <view class="menu-name">自由提问</view>
+      <view class="menu-desc">有任何数学问题都可以问我哦~</view>
+    </view>
+    
+    <view class="menu-item" bindtap="goToTopics">
+      <view class="menu-icon">📖</view>
+      <view class="menu-name">知识点学习</view>
+      <view class="menu-desc">按章节系统学习</view>
+    </view>
+    
+    <view class="menu-item" bindtap="goToPractice">
+      <view class="menu-icon">✏️</view>
+      <view class="menu-name">练习题</view>
+      <view class="menu-desc">巩固所学知识</view>
+    </view>
+    
+    <view class="menu-item" bindtap="goToHistory">
+      <view class="menu-icon">📝</view>
+      <view class="menu-name">学习记录</view>
+      <view class="menu-desc">查看之前的学习进度</view>
+    </view>
+  </view>
+
+  <!-- 每日一句 -->
+  <view class="daily-quote card">
+    <view class="quote-icon">💡</view>
+    <view class="quote-text">{{dailyQuote}}</view>
+  </view>
+</view>

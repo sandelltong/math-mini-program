@@ -1,0 +1,93 @@
+/* pages/topics/topics.wxss */
+.header-card {
+  display: flex;
+  align-items: center;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.header-icon {
+  font-size: 80rpx;
+  margin-right: 30rpx;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-subtitle {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.grade-selector {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+}
+
+.grade-tag {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  background: white;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #666;
+  border: 2rpx solid #FFE4E9;
+  transition: all 0.3s;
+}
+
+.grade-tag.active {
+  background: linear-gradient(135deg, #FFB6C1 0%, #FF9AAF 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.topic-list {
+  padding: 0 20rpx;
+}
+
+.topic-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.topic-icon {
+  font-size: 50rpx;
+  margin-right: 25rpx;
+}
+
+.topic-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.topic-grade {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.topic-arrow {
+  font-size: 40rpx;
+  color: #CCC;
+}
