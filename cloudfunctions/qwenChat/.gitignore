@@ -1,5 +1,5 @@
-# 云函数敏感文件
-config.js
+# 本地敏感配置（不要提交）
+config.local.js
 
 # 依赖目录
 node_modules/
