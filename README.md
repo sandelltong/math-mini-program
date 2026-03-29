@@ -11,6 +11,9 @@
 - 💬 **温柔语气** — 像大姐姐一样温暖的教学风格
 - 📱 **微信小程序** — 随时随地，想问就问
 - 💾 **对话历史** — 自动保存，方便复习
+- 🎤 **语音输入** — 长按录音，自动转文字提问
+- 📖 **知识点学习** — 按章节选择，自动讲解核心概念
+- ✏️ **随堂练习** — 按知识点出题，帮助巩固
 - ⚡ **快速响应** — 云函数部署，秒级回复
 
 ---
@@ -32,7 +35,9 @@ math-tutor-miniprogram/
 ├── cloudfunctions/           # 云函数目录
 │   └── qwenChat/            # AI 对话云函数
 │       ├── index.js         # 云函数入口
-│       ├── config.js        # 配置（API Key 等）
+│       ├── config.js        # 配置入口（从环境变量/本地私有配置读取）
+│       ├── config.local.example.js  # 本地私有配置示例（复制为 config.local.js）
+│       ├── systemPrompt.js  # AI 人设提示词（可提交）
 │       ├── package.json     # 依赖
 │       └── .gitignore       # Git 忽略文件
 ├── pages/
@@ -42,7 +47,9 @@ math-tutor-miniprogram/
 │   │   ├── chat.wxss
 │   │   └── chat.json
 │   ├── index/               # 首页
-│   └── topics/              # 知识点页面
+│   ├── topics/              # 知识点页面
+│   ├── practice/            # 练习题页面
+│   └── history/             # 学习记录页面
 ├── docs/                    # 文档目录
 │   ├── 接入指南.md          # 完整接入文档
 │   └── 快速开始.md          # 5 分钟快速上手
@@ -69,8 +76,9 @@ math-tutor-miniprogram/
    - 创建 API Key 并复制
 
 2. **配置云函数**
-   - 编辑 `cloudfunctions/qwenChat/config.js`
-   - 填入你的 API Key
+   - 在 `cloudfunctions/qwenChat/` 下复制 `config.local.example.js` 为 `config.local.js`
+   - 在 `config.local.js` 中填入你的 API Key（不要提交到 Git）
+   - 或者在云端给云函数配置环境变量 `DASHSCOPE_API_KEY`
 
 3. **配置云环境**
    - 编辑 `app.js`
@@ -93,17 +101,28 @@ math-tutor-miniprogram/
 ### 云函数配置 (`cloudfunctions/qwenChat/config.js`)
 
 ```javascript
+// config.js 只负责“读取配置”，不应包含真实密钥
 module.exports = {
-  // 通义千问 API Key
-  DASHSCOPE_API_KEY: 'sk-xxxxxxxx',
-  
-  // 模型选择
-  MODEL: 'qwen-plus',  // qwen-turbo | qwen-plus | qwen-max
-  
-  // AI 人设
+  DASHSCOPE_API_KEY: process.env.DASHSCOPE_API_KEY || '',
+  MODEL: process.env.QWEN_MODEL || 'qwen-math',
   SYSTEM_PROMPT: '...'
 }
 ```
+
+### 本地私有配置（推荐）(`cloudfunctions/qwenChat/config.local.js`)
+
+复制示例文件：
+
+```javascript
+module.exports = {
+  DASHSCOPE_API_KEY: 'sk-xxxxxxxxxxxxxxxxxxxxxxxx',
+  MODEL: 'qwen-math'
+}
+```
+
+### AI 提示词（可提交）(`cloudfunctions/qwenChat/systemPrompt.js`)
+
+`systemPrompt.js` 存放 AI 老师人设/教学策略，适合提交到代码库做版本管理与评审。
 
 ### 小程序配置 (`app.js`)
 
@@ -160,25 +179,33 @@ npm install
 
 ### 切换模型
 
-编辑 `config.js`：
+优先使用 `config.local.js`（本地）或云函数环境变量：
 ```javascript
 MODEL: 'qwen-turbo'   // 快速、便宜
-MODEL: 'qwen-plus'    // 平衡（推荐）
+MODEL: 'qwen-plus'    // 平衡
 MODEL: 'qwen-max'     // 最强、适合难题
+MODEL: 'qwen-math'    // 数学优化（推荐）
 ```
 
 ---
 
 ## 🔐 安全建议
 
-1. **不要提交 API Key 到 Git** — `config.js` 已加入 `.gitignore`
+1. **不要提交 API Key 到 Git** — `config.local.js` 已加入 `.gitignore`
 2. **云函数权限** — 设置仅小程序可调用
 3. **内容审核** — 可接入阿里云内容安全 API
 4. **限流** — 添加调用频率限制
+5. **密钥泄漏处理** — 若示例/历史文件中出现过真实 `sk-...`，请立即作废并重新生成
 
 ---
 
 ## 📝 更新日志
+
+### v1.2.0 (2026-03-29)
+- ✅ 新增语音输入（录音转文字）
+- ✅ 新增练习题页面与学习记录页面
+- ✅ system prompt 独立为可提交文件，密钥改为环境变量/本地私有配置读取
+- ✅ 知识点学习支持自动讲解
 
 ### v1.1.0 (2026-03-14)
 - ✅ 接入通义千问 AI
